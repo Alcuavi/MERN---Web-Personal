@@ -4,5 +4,11 @@
   "description": "Api de la web personal",
   "main": "index.js",
   "author": "Alberto Cuadrado Villaescusa",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "mongoose": "^8.3.2"
+  }
 }
