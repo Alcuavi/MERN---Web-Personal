@@ -6,9 +6,11 @@
   "author": "Alberto Cuadrado Villaescusa",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "dependencies": {
+    "body-parser": "^1.20.2",
     "express": "^4.19.2",
     "mongoose": "^8.3.2",
     "nodemon": "^3.1.0"
