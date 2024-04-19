@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 
 //Configure Static Folder
-// ...
+app.use(express.static("uploads"));
 
 // Configure Header HTTP - CORS
 // ...
