@@ -1,0 +1,8 @@
+{
+  "name": "web-personal-api",
+  "version": "0.0.1",
+  "description": "Api de la web personal",
+  "main": "index.js",
+  "author": "Alberto Cuadrado Villaescusa",
+  "license": "MIT"
+}
