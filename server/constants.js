@@ -5,6 +5,8 @@ const DB_HOST = "web-personal.qlltefj.mongodb.net";
 const API_VERSION = "v1";
 const IP_SERVER = "localhost";
 
+const JWT_SECRET_KEY = "dfsdo7kFsdjkfAsdjfOpsdjfMsdu1igh";
+
 module.exports = {
     DB_USER,
     DB_PASSWORD,
