@@ -76,13 +76,24 @@ async function updateUser(req, res) {
     } catch (err) {
         res.status(400).send({msg: `Error al actualizar el usuario: ${err}`});
     }
+}
 
+async function deleteUser(req, res) {
+    const {id} = req.params;
+
+    try {
+        await User.findByIdAndDelete({_id: id});
+        res.status(200).send({msg: "Usuario eliminado"});
+    } catch (err) {
+        res.status(400).send({msg: `Error al eliminar el usuario: ${err}`});
+    }
 }
 
 module.exports = {
     getMe,
     getUsers,
     createUser,
-    updateUser
+    updateUser,
+    deleteUser
 };
 
