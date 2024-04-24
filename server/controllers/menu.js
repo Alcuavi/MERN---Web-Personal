@@ -45,8 +45,20 @@ async function updateMenu(req, res) {
     }
 }
 
+async function deleteMenu(req, res) {
+    const {id} = req.params;
+
+    try {
+        await Menu.findByIdAndDelete({_id: id});
+        res.status(200).send({msg: "Menu eliminado"});
+    } catch (err) {
+        res.status(400).send({msg: `Error al eliminar el menu: ${err}`});
+    }
+}
+
 module.exports = {
     createMenu,
     getMenus,
-    updateMenu
+    updateMenu,
+    deleteMenu
 };
