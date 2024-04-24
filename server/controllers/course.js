@@ -18,19 +18,18 @@ async function createCourse(req, res) {
 
 async function getCourse(req, res) {
 
-    const {active} = req.query;
-    let response = null;
+    const { page = 1, limit = 10 } = req.query;
+    const options = {
+        page: parseInt(page),
+        limit: parseInt(limit),
+        sort: { fecha:"desc" }
+    };
 
-    if (active === undefined) {
-        response = await Course.find();
-    } else {
-        response = await Course.find({active});
-    }
-
-    if (!response) {
-        res.status(400).send({msg: "No se ha encontrado ningun curso"});
-    } else {
+    try {
+        const response = await Course.paginate({}, options);
         res.status(200).send(response);
+    } catch (err) {
+        res.status(400).send({msg: `No se ha encontrado ningun curso: ${err}`});
     }
 }
 
