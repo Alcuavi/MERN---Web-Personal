@@ -34,7 +34,26 @@ async function getPosts(req, res) {
     }
 }
 
+async function updatePost(req, res) {
+    
+    const {id} = req.params;
+    const postData = req.body;
+
+    if (req.files.miniature) {
+        const imagePath = image.getFilePath(req.files.miniature);
+        postData.miniature = imagePath;
+    }
+
+    try {
+        await Post.findByIdAndUpdate({_id: id}, postData);
+        res.status(200).send({msg: "Actualizacion correcta"});
+    } catch (err) {
+        res.status(400).send({msg: `Error al actualizar el post: ${err}`});
+    }
+}
+
 module.exports = {
     createPost,
-    getPosts
+    getPosts,
+    updatePost
 };
