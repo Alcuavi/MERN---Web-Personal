@@ -13,7 +13,6 @@ const courseRoutes = require("./router/course");
 const postRoutes = require("./router/post");
 const newsletterRoutes = require("./router/newsletter");
 
-
 // Configure Body Parse
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
