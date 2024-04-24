@@ -25,7 +25,7 @@ async function getMenus(req, res) {
     }
 
     if (!response) {
-        res.status(400).send({msg: "Nose ha encontrado ningun menu"});
+        res.status(400).send({msg: "No se ha encontrado ningun menu"});
     } else {
         res.status(200).send(response);
     }
