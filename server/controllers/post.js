@@ -52,8 +52,20 @@ async function updatePost(req, res) {
     }
 }
 
+async function deletePost(req, res) {
+    const {id} = req.params;
+
+    try {
+        await Post.findByIdAndDelete({_id: id});
+        res.status(200).send({msg: "Post eliminado"});
+    } catch (err) {
+        res.status(400).send({msg: `Error al eliminar el post: ${err}`});
+    }
+}
+
 module.exports = {
     createPost,
     getPosts,
-    updatePost
+    updatePost,
+    deletePost
 };

@@ -44,7 +44,7 @@ async function updateCourse(req, res) {
     }
 
     try {
-        const response = await Course.findByIdAndUpdate({_id: id}, courseData);
+        await Course.findByIdAndUpdate({_id: id}, courseData);
         res.status(200).send({msg: "Actualizacion correcta"});
     } catch (err) {
         res.status(400).send({msg: `Error al actualizar el curso: ${err}`});
