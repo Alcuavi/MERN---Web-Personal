@@ -34,6 +34,20 @@ async function getPosts(req, res) {
     }
 }
 
+async function getPost(req, res) {
+    const {path} = req.params;
+
+    try {
+        const response = await Post.findOne({path});
+        if (!response) {
+            return res.status(404).send({ msg: "El post no existe" });
+        }
+        res.status(200).send(response);
+    } catch (err) {
+        res.status(500).send({msg: `Error interno del servidor: ${err}`});
+    }
+}
+
 async function updatePost(req, res) {
     
     const {id} = req.params;
@@ -66,6 +80,7 @@ async function deletePost(req, res) {
 module.exports = {
     createPost,
     getPosts,
+    getPost,
     updatePost,
     deletePost
 };
