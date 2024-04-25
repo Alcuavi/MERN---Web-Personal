@@ -36,7 +36,19 @@ async function getEmails(req, res) {
     }
 }
 
+async function deleteEmail(req, res) {
+    const {id} = req.params;
+
+    try {
+        await Newsletter.findByIdAndDelete({_id: id});
+        res.status(200).send({msg: "Registro eliminado"});
+    } catch (err) {
+        res.status(400).send({msg: `Error al eliminar el registro: ${err}`});
+    }
+}
+
 module.exports = {
     suscribeEmail,
-    getEmails
+    getEmails,
+    deleteEmail
 };
