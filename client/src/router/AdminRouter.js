@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { AdminLayout } from "../layouts";
 import { Auth, Users, Blog, Courses, Menu, Newsletter } from "../pages/admin";
 
-const user = {email: "Alberto.cuvi@gmail.com"};
+const user = null;
 
 export function AdminRouter() {
 
@@ -18,7 +18,7 @@ export function AdminRouter() {
   return (
     <Routes>
       {!user ? (
-        <Route path="/admin/*" element={loadLayout(AdminLayout, Auth)} />
+        <Route path="/admin/*" element={<Auth/>} />
       ) : (
         <>
         {["/admin", "/admin/blog"].map((path) => (
