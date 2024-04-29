@@ -11,7 +11,7 @@ export function WebRouter() {
         <Page/>
       </Layout>
     )
-  }
+  };
   
   return (
     <Routes>
