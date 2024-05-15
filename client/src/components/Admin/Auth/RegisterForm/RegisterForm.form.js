@@ -15,5 +15,5 @@ export function validationSchema () {
         password: Yup.string().required("Campo obligatorio"),
         repeatPassword: Yup.string().required("Campo obligatorio").oneOf([Yup.ref("password")], "Las contraseñas tienen que ser iguales"),
         conditionsAccepted: Yup.bool().isTrue(true),
-    })
+    });
 }
