@@ -68,7 +68,8 @@ export function AuthProvider(props) {
     const data = {
         accessToken: token,
         user,
-        login
+        login,
+        logout
     };
 
     if(loading) return null;
