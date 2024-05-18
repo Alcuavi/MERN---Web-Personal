@@ -1,4 +1,6 @@
 import React from 'react';
+import { Icon } from "../../assets";
+import { AdminMenu } from "../../components/Admin/AdminLayout";
 import "./AdminLayout.scss";
 
 export function AdminLayout(props) {
@@ -6,8 +8,8 @@ export function AdminLayout(props) {
     return (
         <div className="admin-layout">
             <div className="admin-layout__left">
-                <div className="logo">LOGO</div>
-                <span>ADMIN MENU</span>
+                <Icon.LogoWhite className="logo"/>
+                <AdminMenu/>
             </div>
             <div className="admin-layout__right">
                 <div className="admin-layout__right-header">
