@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Tab, Button } from "semantic-ui-react";
+import { BasicModal } from "../../../components/Admin/Shared";
 import "./Users.scss";
 
 export function Users() {
+  const [showModal, setShowModal] = useState(false);
+
+  const onOpenCloseModal = () => setShowModal((prevState) => !prevState)
 
   const panes = [
     {
@@ -25,11 +29,15 @@ export function Users() {
   return (
     <>
       <div className="users-page">
-        <Button className="users-page__add" primary onClick={() => console.log("Abrir formulario")}>
+        <Button className="users-page__add" primary onClick={onOpenCloseModal}>
           Nuevo usuario
         </Button>
         <Tab menu={{secondary: true}} panes={panes} />
       </div>
+
+      <BasicModal show={showModal} close={onOpenCloseModal} title="Crear nuevo usuario">
+        <h2>Formulario para crear usuarios</h2>
+      </BasicModal>
     </>
   );
 }
