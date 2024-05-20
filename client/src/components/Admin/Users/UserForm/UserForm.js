@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Form, Image } from "semantic-ui-react";
 import { useFormik } from "formik";
+import { useDropzone } from "react-dropzone";
+import { image } from "../../../../assets";
 import { initialValues, validationSchema } from "./UserForm.form";
 import "./UserForm.scss";
 
 export function UserForm(props) {
     const { close, onReload, user } = props;
-
+    
     const formik = useFormik({
         initialValues: initialValues(),
         validationSchema: validationSchema(),
@@ -20,10 +22,29 @@ export function UserForm(props) {
         },
     });
 
+    const onDrop = useCallback((acceptedFiles) => {
+        const file = acceptedFiles[0];
+        formik.setFieldValue("avatar", URL.createObjectURL(file));
+        formik.setFieldValue("fileAvatar", file);
+    });
+
+    const {getRootProps, getInputProps} = useDropzone({
+        accept: "image/jpg, image/png",
+        onDrop,
+    });
+
+    const getAvatar = () => {
+        if(formik.values.fileAvatar) {
+            return formik.values.avatar;
+        }
+        return image.noAvatar;
+    };
+
   return (
     <Form className="user-form" onSubmit={formik.handleSubmit}>
-      <div className="user-form__avatar">
-        <span>AVATAR</span>
+      <div className="user-form__avatar" {...getRootProps()}>
+        <input {...getInputProps()}/>
+        <Image avatar size="small" src={getAvatar()} />
       </div>
 
       <Form.Group widths="equal">
