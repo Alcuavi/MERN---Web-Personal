@@ -1,28 +1,76 @@
 import React from 'react';
 import { Form, Image } from "semantic-ui-react";
+import { useFormik } from "formik";
+import { initialValues, validationSchema } from "./UserForm.form";
+import "./UserForm.scss";
 
 export function UserForm(props) {
     const { close, onReload, user } = props;
 
+    const formik = useFormik({
+        initialValues: initialValues(),
+        validationSchema: validationSchema(),
+        validateOnChange: false,
+        onSubmit: async (formValue) => {
+            try {
+                console.log(formValue);
+            } catch (error) {
+                console.error(error);
+            }
+        },
+    });
+
   return (
-    <Form className="user-form">
+    <Form className="user-form" onSubmit={formik.handleSubmit}>
       <div className="user-form__avatar">
         <span>AVATAR</span>
       </div>
 
       <Form.Group widths="equal">
-        <Form.Input name="firstname" placeholder="Nombre" />
-        <Form.Input name="lastname" placeholder="Apellidos" />
+        <Form.Input 
+            name="firstname" 
+            placeholder="Nombre" 
+            onChange={formik.handleChange} 
+            value={formik.values.firstname} 
+            error={formik.errors.firstname}
+        />
+        <Form.Input 
+            name="lastname" 
+            placeholder="Apellidos"
+            onChange={formik.handleChange} 
+            value={formik.values.lastname} 
+            error={formik.errors.lastname} 
+        />
       </Form.Group>
 
       <Form.Group widths="equal">
-        <Form.Input name="email" placeholder="Correo electronico" />
-        <Form.Dropdown placeholder="Selecciona un rol" options={roleOptions} selection/>
+        <Form.Input 
+            name="email" 
+            placeholder="Correo electronico"
+            onChange={formik.handleChange} 
+            value={formik.values.email} 
+            error={formik.errors.email}
+        />
+        <Form.Dropdown 
+            placeholder="Selecciona un rol" 
+            options={roleOptions} 
+            selection
+            onChange={(_, data) => formik.setFieldValue("role", data.value)}
+            value={formik.values.role} 
+            error={formik.errors.role}
+        />
       </Form.Group>
 
-      <Form.Input type="password" name="password" placeholder="Contraseña" />
+      <Form.Input 
+        type="password" 
+        name="password" 
+        placeholder="Contraseña"
+        onChange={formik.handleChange} 
+        value={formik.values.password} 
+        error={formik.errors.password}
+      />
 
-      <Form.Button type="submit" primary fluid>
+      <Form.Button type="submit" primary fluid loading={formik.isSubmitting}>
         {user ? "Actualizar usuario" : "Crear usuario"}
       </Form.Button>
     </Form>
